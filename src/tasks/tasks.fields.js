@@ -22,10 +22,10 @@ module.exports = function(req) {
         name: 'nombre de la tarea'
     })
 
-    this.hours = validator({
-        type: 'number',
-        value: props.hours,
-        name: 'horas'
+    this.duedate = validator({
+        type: 'date',
+        value: props.duedate,
+        name: 'fecha de termino'
     })
 
     this.description = validator({

@@ -17,7 +17,7 @@ async function createTask(req, res) {
         const data = {
             teacherId: req.teacherId,
             name: tasks.name.get(),
-            hours: tasks.hours.get(),
+            duedate: tasks.duedate.get(),
             description: tasks.description.get(),
             language: tasks.language.get(),
         }
@@ -76,7 +76,7 @@ async function updateTask(req, res) {
 
         const fields = [
             'name',
-            'hours',
+            'duedate',
             'description',
             'language',
         ]

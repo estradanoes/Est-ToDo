@@ -18,8 +18,8 @@ const schema = new Schema({
         type: String
     },
 
-    hours: {
-        type: Number
+    duedate: {
+        type: Date
     },
 
     description: {
