@@ -18,8 +18,7 @@ async function createTask(req, res) {
             teacherId: req.teacherId,
             name: tasks.name.get(),
             duedate: tasks.duedate.get(),
-            description: tasks.description.get(),
-            language: tasks.language.get(),
+            category: tasks.category.get()
         }
 
         console.log(data)
@@ -38,8 +37,7 @@ async function getTasks(req, res) {
 
         const query = {
             page: parseInt(req.query.page || 0),
-            find: req.query.find,
-            language: req.query.language,
+            find: req.query.find
         }
 
         res.$data(await Service.getTasks(query))
@@ -77,8 +75,7 @@ async function updateTask(req, res) {
         const fields = [
             'name',
             'duedate',
-            'description',
-            'language',
+            'category',
         ]
 
         fields.forEach(field => req.body[field] && (data[field] = req.body[field]))

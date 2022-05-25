@@ -22,12 +22,8 @@ const schema = new Schema({
         type: Date
     },
 
-    description: {
+    category: {
         type: String
-    },
-
-    language: {
-        type: [String]
     },
 
     created: {

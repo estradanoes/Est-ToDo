@@ -37,7 +37,7 @@ async function getTasks(query) {
 
             options.$or = [
                 {name: regexp},
-                {description: regexp}
+                {category: regexp}
             ]
 
             const Teachers = require('../teachers/teachers.service')
@@ -50,10 +50,6 @@ async function getTasks(query) {
             })
         }
 
-        if(query.language)
-            options.language = {
-                $in: [query.language]
-            }
 
         console.log(JSON.stringify(options, null, 4))
 
