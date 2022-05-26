@@ -19,7 +19,8 @@ async function createTask(req, res) {
             name: tasks.name.get(),
             duedate: tasks.duedate.get(),
             description: tasks.description.get(),
-            category: tasks.category.get()
+            category: tasks.category.get(),
+            status: tasks.status.get()
         }
 
         console.log(data)
@@ -78,6 +79,7 @@ async function updateTask(req, res) {
             'duedate',
             'description',
             'category',
+            'status'
         ]
 
         fields.forEach(field => req.body[field] && (data[field] = req.body[field]))

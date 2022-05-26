@@ -40,5 +40,14 @@ module.exports = function(req) {
         name: 'categoria'
     })
 
+    this.status = validator({
+        type: 'boolean',
+        value: props.status,
+        name: 'estatus',
+        default: false,
+        required: false
+    })
+
+    // required: false
     return this
 }

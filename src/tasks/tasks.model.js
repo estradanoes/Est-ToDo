@@ -30,6 +30,10 @@ const schema = new Schema({
         type: String
     },
 
+    status: {
+        type: Boolean
+    },
+
     created: {
         type: Date,
         default: Date.now
