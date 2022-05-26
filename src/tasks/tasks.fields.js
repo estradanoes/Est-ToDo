@@ -28,6 +28,12 @@ module.exports = function(req) {
         name: 'fecha de termino'
     })
 
+    this.description = validator({
+        type: 'string',
+        value: props.description,
+        name: 'descripcion'
+    })
+
     this.category = validator({
         type: 'string',
         value: props.category,

@@ -37,6 +37,7 @@ async function getTasks(query) {
 
             options.$or = [
                 {name: regexp},
+                {description: regexp},
                 {category: regexp}
             ]
 
