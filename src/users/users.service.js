@@ -1,42 +1,42 @@
-const Model = require('./teachers.model')
-const Messages = require('./teachers.messages')
+const Model = require('./users.model')
+const Messages = require('./users.messages')
 const Services = require('../services')
 const Encrypt = require('../encrypt')
 const Moment = require('moment')
 const Methods = require('../methods')
 
 module.exports = {
-    loginTeacher,
-    createTeacher,
-    getTeachers,
-    updateTeacher,
-    deleteTeacher,
-    findTeachersId,
+    loginUser,
+    createUser,
+    getUsers,
+    updateUser,
+    deleteUser,
+    findUsersId,
     Model,
     Messages
 }
 
-async function loginTeacher(data) {
+async function loginUser(data) {
     try {
 
-        const teacher = await Model.findOne({email: data.email}, '+password')
+        const user = await Model.findOne({email: data.email}, '+password')
 
-        if(!teacher)
-            throw Messages(data.email).teacherNotFound
+        if(!user)
+            throw Messages(data.email).userNotFound
 
-        if(!Encrypt.bcryptCompare(data.password, teacher.password))
-            throw Messages(data.password).teacherPasswordError
+        if(!Encrypt.bcryptCompare(data.password, user.password))
+            throw Messages(data.password).userPasswordError
 
         const sessionData = {
-            teacherId: teacher._id,
-            token: Encrypt.cryptrString( teacher._id ),
+            userId: user._id,
+            token: Encrypt.cryptrString( user._id ),
             expired: Moment().add(15, 'days').toDate()
         }
 
         const session = await Services.Sessions.createSession(sessionData)
 
         return {
-            teacher,
+            user,
             session
         }
 
@@ -45,19 +45,19 @@ async function loginTeacher(data) {
     }
 }
 
-async function createTeacher(data) {
+async function createUser(data) {
     try {
 
-        const teacher = new Model(data)
+        const user = new Model(data)
 
-        return teacher.save()
+        return user.save()
 
     } catch(error) {
         throw error
     }
 }
 
-async function getTeachers(query) {
+async function getUsers(query) {
     try {
 
         const options = {}
@@ -76,7 +76,7 @@ async function getTeachers(query) {
         if(query.status)
             options.status = query.status
 
-        const teachers = await Model.find(options)
+        const users = await Model.find(options)
             .skip(limit * page)
             .limit(limit)
             .sort({created: -1})
@@ -84,8 +84,8 @@ async function getTeachers(query) {
         const total = await Model.countDocuments(options)
 
         return {
-            teachers,
-            metadata: Methods.metadata(page, limit, total, teachers.length),
+            users,
+            metadata: Methods.metadata(page, limit, total, users.length),
             query
         }
 
@@ -94,50 +94,50 @@ async function getTeachers(query) {
     }
 }
 
-async function getTeacher(teacherId) {
+async function getUser(userId) {
     try {
 
-        const teacher = await Model.findOne({_id: teacherId})
+        const user = await Model.findOne({_id: userId})
 
-        if(!teacher)
-            throw Messages(teacherId).teacherNotFound
+        if(!user)
+            throw Messages(userId).userNotFound
 
-        return teacher
+        return user
 
     } catch(error) {
         throw error
     }
 }
 
-async function updateTeacher(teacherId, data) {
+async function updateUser(userId, data) {
     try {
 
-        const teacher = await getTeacher(teacherId)
+        const user = await getUser(userId)
         const fields = Object.keys(data)
 
-        fields.forEach(field => teacher[field] = data[field])
+        fields.forEach(field => user[field] = data[field])
 
-        return teacher.save()
+        return user.save()
 
     } catch(error) {
         throw error
     }
 }
 
-async function deleteTeacher(teacherId) {
+async function deleteUser(userId) {
     try {
 
-        const teacher = await getTeacher(teacherId)
-        await Model.deleteOne({_id: teacherId})
+        const user = await getUser(userId)
+        await Model.deleteOne({_id: userId})
 
-        return teacher
+        return user
 
     } catch(error) {
         throw error
     }
 }
 
-async function findTeachersId(value) {
+async function findUsersId(value) {
     try {
 
         const regexp = new RegExp(value, 'i')
@@ -147,10 +147,10 @@ async function findTeachersId(value) {
             ]
         }
 
-        const teachers = await Model.find(options)
+        const users = await Model.find(options)
             .select({_id: true})
 
-        return teachers.map(teacher => teacher._id)
+        return users.map(user => user._id)
 
     } catch(error) {
         throw error

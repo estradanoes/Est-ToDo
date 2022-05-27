@@ -11,7 +11,7 @@ Router.get('/', async(req, res) => {
 
 module.exports = [
     Router,
-    require('./teachers/teachers.router'),
+    require('./users/users.router'),
     require('./tasks/tasks.router'),
     require('./sessions/sessions.router'),
 ]

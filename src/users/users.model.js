@@ -1,7 +1,7 @@
 const Schema = require('mongoose').Schema
 const Model = require('mongoose').model
 const ObjectId = require('mongoose').Types.ObjectId
-const Messages = require('./teachers.messages')
+const Messages = require('./users.messages')
 const Encrypt = require('../encrypt')
 
 const schema = new Schema({
@@ -63,23 +63,23 @@ schema.pre('save', function(next) {
 })
 
 schema.post('save', function(error, doc, next) {
-    if(error) return next(Messages(error).teacherSaveError)
+    if(error) return next(Messages(error).userSaveError)
     next()
 })
 
 schema.post('findOne', function(error, doc, next) {
-    if(error) return next(Messages(error).teacherGetError)
+    if(error) return next(Messages(error).userGetError)
     next()
 })
 
 schema.post('find', function(error, doc, next) {
-    if(error) return next(Messages(error).teacherGetError)
+    if(error) return next(Messages(error).userGetError)
     next()
 })
 
 schema.post('remove', function(error, doc, next) {
-    if(error) return next( Messages(error).teacherDeleteError )
+    if(error) return next( Messages(error).userDeleteError )
     next()
 })
 
-module.exports = Model('Teachers', schema)
+module.exports = Model('Users', schema)

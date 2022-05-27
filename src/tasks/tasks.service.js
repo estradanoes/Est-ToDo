@@ -42,12 +42,12 @@ async function getTasks(query) {
                 {label: regexp}
             ]
 
-            const Teachers = require('../teachers/teachers.service')
-            const teachersIds = await Teachers.findTeachersId(query.find)
+            const Users = require('../users/users.service')
+            const usersIds = await Users.findUsersId(query.find)
 
             options.$or.push({
-                teacherId: {
-                    $in: teachersIds
+                userId: {
+                    $in: usersIds
                 }
             })
         }
@@ -59,7 +59,7 @@ async function getTasks(query) {
             .skip(page * limit)
             .limit(limit)
             .sort({created: -1})
-            .populate('teacher')
+            .populate('user')
 
         const total = await Model.countDocuments(options)
 

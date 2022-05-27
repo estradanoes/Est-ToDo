@@ -5,13 +5,13 @@ const Messages = require('./sessions.messages')
 
 const schema = new Schema({
 
-    teacherId: {
+    userId: {
         type: ObjectId
     },
 
-    teacher: {
+    user: {
         type: ObjectId,
-        ref: 'Teachers'
+        ref: 'Users'
     },
 
     token: {

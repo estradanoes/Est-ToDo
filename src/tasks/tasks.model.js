@@ -5,13 +5,13 @@ const Messages = require('./tasks.messages')
 
 const schema = new Schema({
 
-    teacherId: {
+    userId: {
         type: ObjectId
     },
 
-    teacher: {
+    user: {
         type: ObjectId,
-        ref: 'Teachers'
+        ref: 'Users'
     },
 
     name: {
@@ -46,7 +46,7 @@ const schema = new Schema({
 
 schema.pre('save', function(next) {
 
-    this.teacher = this.teacherId
+    this.user = this.userId
 
     next()
 })

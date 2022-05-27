@@ -10,10 +10,10 @@ module.exports = function(req) {
         name: 'identificador'
     })
 
-    this.teacherId = validator({
+    this.userId = validator({
         type: 'objectId',
-        value: props.teacherId,
-        name: 'identificador del maestro'
+        value: props.userId,
+        name: 'identificador del usuario'
     })
 
     this.name = validator({

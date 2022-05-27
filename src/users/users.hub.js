@@ -1,15 +1,15 @@
-const Service = require('./teachers.service')
-const Fields = require('./teachers.fields')
+const Service = require('./users.service')
+const Fields = require('./users.fields')
 
 module.exports = {
-    loginTeacher,
-    createTeacher,
-    getTeachers,
-    updateTeacher,
-    deleteTeacher,
+    loginUser,
+    createUser,
+    getUsers,
+    updateUser,
+    deleteUser,
 }
 
-async function loginTeacher(req, res) {
+async function loginUser(req, res) {
     try {
 
         const fields = new Fields(req)
@@ -19,14 +19,14 @@ async function loginTeacher(req, res) {
             password: fields.password.get(),
         }
 
-        res.$data(await Service.loginTeacher(data))
+        res.$data(await Service.loginUser(data))
 
     } catch(error) {
         res.$error(error)
     }
 }
 
-async function createTeacher(req, res) {
+async function createUser(req, res) {
     try {
 
         const fields = new Fields(req)
@@ -40,14 +40,14 @@ async function createTeacher(req, res) {
             description: fields.description.get(),
         }
 
-        res.$data(await Service.createTeacher(data))
+        res.$data(await Service.createUser(data))
 
     } catch(error) {
         res.$error(error)
     }
 }
 
-async function getTeachers(req, res) {
+async function getUsers(req, res) {
     try {
 
         const query = {
@@ -56,18 +56,18 @@ async function getTeachers(req, res) {
             status: req.query.status,
         }
 
-        res.$data(await Service.getTeachers(query))
+        res.$data(await Service.getUsers(query))
 
     } catch(error) {
         res.$error(error)
     }
 }
 
-async function updateTeacher(req, res) {
+async function updateUser(req, res) {
     try {
 
         const data = {
-            teacherId: req.params.teacherId
+            userId: req.params.userId
         }
 
         const fields = [
@@ -80,21 +80,21 @@ async function updateTeacher(req, res) {
 
         fields.forEach(field => req.body[field] && (data[field] = req.body[field]))
 
-        res.$data(await Service.updateTeacher(data.teacherId, data))
+        res.$data(await Service.updateUser(data.userId, data))
 
     } catch(error) {
         res.$error(error)
     }
 }
 
-async function deleteTeacher(req, res) {
+async function deleteUser(req, res) {
     try {
 
         const data = {
-            teacherId: req.params.teacherId
+            userId: req.params.userId
         }
 
-        res.$data(await Service.deleteTeacher(data.teacherId))
+        res.$data(await Service.deleteUser(data.userId))
 
     } catch(error) {
         res.$error(error)
