@@ -30,6 +30,10 @@ const schema = new Schema({
         type: String
     },
 
+    label: {
+        type: String
+    },
+
     status: {
         type: Boolean
     },

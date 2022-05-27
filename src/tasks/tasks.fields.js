@@ -40,6 +40,12 @@ module.exports = function(req) {
         name: 'categoria'
     })
 
+    this.label = validator({
+        type: 'string',
+        value: props.label,
+        name: 'etiqueta'
+    })
+
     this.status = validator({
         type: 'boolean',
         value: props.status,

@@ -20,6 +20,7 @@ async function createTask(req, res) {
             duedate: tasks.duedate.get(),
             description: tasks.description.get(),
             category: tasks.category.get(),
+            label: tasks.label.get(),
             status: tasks.status.get()
         }
 
@@ -79,6 +80,7 @@ async function updateTask(req, res) {
             'duedate',
             'description',
             'category',
+            'label',
             'status'
         ]
 

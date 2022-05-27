@@ -38,7 +38,8 @@ async function getTasks(query) {
             options.$or = [
                 {name: regexp},
                 {description: regexp},
-                {category: regexp}
+                {category: regexp},
+                {label: regexp}
             ]
 
             const Teachers = require('../teachers/teachers.service')
