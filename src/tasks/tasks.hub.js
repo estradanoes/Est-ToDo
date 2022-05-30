@@ -21,7 +21,8 @@ async function createTask(req, res) {
             description: tasks.description.get(),
             category: tasks.category.get(),
             label: tasks.label.get(),
-            status: tasks.status.get()
+            status: tasks.status.get(),
+            reminder: tasks.reminder.get(),
         }
 
         console.log(data)
@@ -81,7 +82,8 @@ async function updateTask(req, res) {
             'description',
             'category',
             'label',
-            'status'
+            'status',
+            'reminder'
         ]
 
         fields.forEach(field => req.body[field] && (data[field] = req.body[field]))

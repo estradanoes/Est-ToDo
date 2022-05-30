@@ -54,6 +54,14 @@ module.exports = function(req) {
         required: false
     })
 
+    this.reminder = validator({
+        type: 'boolean',
+        value: props.reminder,
+        name: 'recordatorio',
+        default: false,
+        required: false
+    })
+
     // required: false
     return this
 }

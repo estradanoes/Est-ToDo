@@ -38,6 +38,10 @@ const schema = new Schema({
         type: Boolean
     },
 
+    reminder: {
+        type: Boolean
+    },
+
     created: {
         type: Date,
         default: Date.now
