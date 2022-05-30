@@ -19,7 +19,7 @@ const schema = new Schema({
     },
 
     duedate: {
-        type: Date
+        type: String
     },
 
     description: {
