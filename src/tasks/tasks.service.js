@@ -41,15 +41,9 @@ async function getTasks(query) {
                 {category: regexp},
                 {label: regexp}
             ]
-
-            const Users = require('../users/users.service')
-            const usersIds = await Users.findUsersId(query.find)
-
-            options.$or.push({
-                userId: {
-                    $in: usersIds
-                }
-            })
+        }
+        if(query.userId){
+            options.userId =  query.userId
         }
 
 

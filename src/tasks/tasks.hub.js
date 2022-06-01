@@ -40,6 +40,7 @@ async function getTasks(req, res) {
         const tasks = new Fields(req)
 
         const query = {
+            userId: req.userId,
             page: parseInt(req.query.page || 0),
             find: req.query.find
         }
