@@ -15,4 +15,5 @@ module.exports = [
     require('./tasks/tasks.router'),
     require('./subtasks/subtasks.router'),
     require('./sessions/sessions.router'),
+    require('./summary/summary.router')
 ]

@@ -87,8 +87,8 @@ async function updateTask(req, res) {
             'reminder'
         ]
 
-        fields.forEach(field => req.body[field] && (data[field] = req.body[field]))
-
+        fields.forEach(field => req.body[field] != undefined && (data[field] = req.body[field]))
+        console.log(data)
         res.$data(await Service.updateTask(data.taskId, data))
 
     } catch(error) {
